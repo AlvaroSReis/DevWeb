@@ -15,7 +15,8 @@ app.get('/',(req, res) => {
 app.get('/query1', (req,res)=> {
     connection.query(`SELECT NomeOrgao, 
     COUNT(*) AS NumeroProtocolos 
-    FROM Dados GROUP BY NomeOrgao;`,
+    FROM previdencia_social.Dados 
+    GROUP BY NomeOrgao;`,
     (err, result)=>{
         if(!err){
             res.send(result);
@@ -27,7 +28,7 @@ app.get('/query1', (req,res)=> {
 app.get('/query2', (req,res)=> {
     connection.query(`SELECT NomeMunicipioOrgao, 
     COUNT(*) AS NumeroProtocolos
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY NomeMunicipioOrgao;`,
     (err, result)=>{
         if(!err){
@@ -40,7 +41,7 @@ app.get('/query2', (req,res)=> {
 app.get('/query3', (req,res)=> {
     connection.query(`SELECT EstadoCivil, 
     COUNT(*) AS NumeroSolicitantes
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY EstadoCivil
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1; `,
@@ -61,7 +62,7 @@ app.get('/query4', (req,res)=> {
      WHEN DataNascimento >= 19660101 THEN '46-55'
      ELSE '56+' END AS FaixaEtaria,
      COUNT(*) AS NumeroSolicitantes
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY FaixaEtaria
     ORDER BY NumeroSolicitantes DESC;`,
     (err, result)=>{
@@ -75,7 +76,7 @@ app.get('/query4', (req,res)=> {
 app.get('/query5', (req,res)=> {
     connection.query(`SELECT Sexo, 
     COUNT(*) AS NumeroSolicitantes
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY Sexo; 
     `,
     (err, result)=>{
@@ -89,7 +90,7 @@ app.get('/query5', (req,res)=> {
 app.get('/query6', (req,res)=> {
     connection.query(`SELECT NivelEscolaridade, 
     COUNT(*) AS NumeroSolicitantes
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY NivelEscolaridade
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1;`,
@@ -104,7 +105,7 @@ app.get('/query6', (req,res)=> {
 app.get('/query7', (req,res)=> {
     connection.query(`SELECT RacaCor, 
     COUNT(*) AS NumeroSolicitantes
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY RacaCor
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1; 
@@ -120,7 +121,7 @@ app.get('/query7', (req,res)=> {
 app.get('/query8', (req,res)=> {
     connection.query(`SELECT NomeMunicipioOrgao, 
     COUNT(*) AS NumeroEmissões
-    FROM Dados
+    FROM previdencia_social.Dados
     WHERE TipoProtocolo = '1ª Via'
     GROUP BY NomeMunicipioOrgao
     ORDER BY NumeroEmissões DESC
@@ -136,7 +137,7 @@ app.get('/query8', (req,res)=> {
 app.get('/query9', (req,res)=> {
     connection.query(`SELECT DescricaoNacionalidade, 
     COUNT(*) AS NumeroSolicitantes
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY DescricaoNacionalidade
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1;`,
@@ -151,7 +152,7 @@ app.get('/query9', (req,res)=> {
 app.get('/query10', (req,res)=> {
     connection.query(`SELECT SiglaUFOrgao, 
     COUNT(*) AS NumeroProtocolos
-    FROM Dados
+    FROM previdencia_social.Dados
     GROUP BY SiglaUFOrgao;`,
     (err, result)=>{
         if(!err){
