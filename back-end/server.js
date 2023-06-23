@@ -1,7 +1,8 @@
-const express = require('express')
-const connection = require('./connection')
-const app = express()
-const cors = require('cors')
+const express = require('express');
+const connection = require('./connection');
+const app = express();
+const cors = require('cors');
+const port = 8080
 
 app.use(cors())
 const bodyParser = require('body-parser')
@@ -11,6 +12,7 @@ app.use(bodyParser.json())
 app.get('/',(req, res) => {
     res.json("Rodando")
 })
+
 
 app.get('/query1', (req,res)=> {
     connection.query(`SELECT NomeOrgao, 
@@ -162,8 +164,32 @@ app.get('/query10', (req,res)=> {
     connection.end;
 });
 
+app.use((req, res, next) => {
+    const err = new Error('Not Found')
+    console.log(err)
+    err.status = 404
+    res.send('Route not found')
+    next(err)
+})
 
+app.use((req, res, next) => {
+    const err = new Error('Not Found')
+    console.log(err)
+    err.status = 491
+    res.send('Route not found')
+    next(err)
+})
 
-app.listen(9000, ()=>{console.log("Rodando")})
+app.on('uncaughtException', err => {
+    console.log(`Uncaught Exception: ${err.message}`)
+    process.exit(1)
+})
+
+app.on('ECONNRESET', err => {
+    console.log(`Uncaught Exception: ${err.message}`)
+    process.exit(1)
+})
+
+app.listen(port, ()=>{console.log(`Rodando na porta: ${port}`)})
 
 connection.connect()
