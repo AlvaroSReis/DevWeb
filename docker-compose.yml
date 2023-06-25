@@ -1,0 +1,33 @@
+version: "2.18.1"
+
+services:
+  back-end:
+    container_name: back-end
+    restart: unless-stopped
+    image: back-end:1.0.0
+    build:
+      context: back-end
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - shared-network
+  
+  front-end:
+    container_name: front-end
+    restart: unless-stopped
+    image: front-end:1.0.0
+    build:
+      context: front-end
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    depends_on:
+      - back-end
+
+networks:
+  shared-network:
+  
+  

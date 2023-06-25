@@ -1,4 +1,5 @@
-const {Client} = require('pg')
+//const {Client} = require('pg')
+const { Pool } = require('pg')
 /*
 const client = new Client({
     host: "localhost",
@@ -9,7 +10,7 @@ const client = new Client({
     schema: 'public'
 })
 */
-const client = new Client({
+const client = new Pool({
     host: "devweb.crnmq06dvith.us-east-1.rds.amazonaws.com",
     user: "postgres",
     port: 5432,
