@@ -1,25 +1,81 @@
 import Api from "./Api";
 
 export async function query1(){
-    let data: string;
-    //await Api.get("/query1").then((result) =>
-    //console.log(result.data.rows))
-    data = JSON.stringify(await Api.get("/query1").then((result) => {
+    let data = JSON.stringify(await Api.get("/query1").then((result) => {
         console.log(result)
         return result.data.rows
     }));
-    console.log(data)
-    //return data;
+    return data;
+}
+
+export async function query2(){
+    let data = JSON.stringify(await Api.get("/query2").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
 }
 
 export async function query3(){
-    let data: string;
-    //await Api.get("/query1").then((result) =>
-    //console.log(result.data.rows))
-    data = JSON.stringify(await Api.get("/query3").then((result) => {
+    let data = JSON.stringify(await Api.get("/query3").then((result) => {
         console.log(result)
         return result.data.rows
     }));
-    console.log(data)
-    //return data;
+    return data;
+} 
+
+export async function query4(){
+    let data = JSON.stringify(await Api.get("/query4").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
+}
+
+export async function query5(){
+    let data = JSON.stringify(await Api.get("/query5").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
+}
+
+export async function query6(){
+    let data = JSON.stringify(await Api.get("/query6").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
+}
+
+export async function query7(){
+    let data = JSON.stringify(await Api.get("/query7").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
+}
+
+export async function query8(){
+    let data = JSON.stringify(await Api.get("/query8").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
+}
+
+export async function query9(){
+    let data = JSON.stringify(await Api.get("/query9").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
+}
+
+export async function query10(){
+    let data = JSON.stringify(await Api.get("/query10").then((result) => {
+        console.log(result)
+        return result.data.rows
+    }));
+    return data;
 }
