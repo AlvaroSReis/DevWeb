@@ -15,10 +15,11 @@ app.get('/',(req, res) => {
 
 
 app.get('/query1', (req,res)=> {
-    connection.query(`SELECT NomeOrgao, 
+    connection.query(`SELECT siglauforgao, 
     COUNT(*) AS NumeroProtocolos 
     FROM previdencia_social.Dados 
-    GROUP BY NomeOrgao;`,
+    GROUP BY siglauforgao
+    order by NumeroProtocolos desc;`,
     (err, result)=>{
         if(!err){
             res.send(result);
@@ -28,10 +29,11 @@ app.get('/query1', (req,res)=> {
 });
 
 app.get('/query2', (req,res)=> {
-    connection.query(`SELECT NomeMunicipioOrgao, 
-    COUNT(*) AS NumeroProtocolos
+    connection.query(`SELECT NomeMunicipioOrgao, COUNT(*) AS NumeroProtocolos
     FROM previdencia_social.Dados
-    GROUP BY NomeMunicipioOrgao;`,
+    GROUP BY NomeMunicipioOrgao
+    order by NumeroProtocolos desc
+    limit 30;`,
     (err, result)=>{
         if(!err){
             res.send(result);
