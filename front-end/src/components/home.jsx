@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { query3, query4, query5, query6,
-     query7, query8, query9, query10} from "../services/Connection";
+import { query1, query2, query3, 
+query4, query5, query6,query7, 
+query8, query9, query10
+} from "../services/Connection";
 import '../styles/tabela.css';
 //import Button from '@material-ui/core/Button';
 
 
 export default function Home() {
+    const [dados1, setDados1] = useState([{}]);
+    const [dados2, setDados2] = useState([{}]);
     const [dados3, setDados3] = useState([{}]);
     const [dados4, setDados4] = useState([{}]);
     const [dados5, setDados5] = useState([{}]);
@@ -34,6 +38,10 @@ export default function Home() {
                 setDados9(JSON.parse(data));
                 data = await query10();
                 setDados10(JSON.parse(data));
+                data = await query1();
+                setDados1(JSON.parse(data));
+                data = await query2();
+                setDados2(JSON.parse(data));
             } catch(error) {
                 console.error(error);
             }
@@ -44,10 +52,46 @@ export default function Home() {
 
     useEffect( () => {
         //console.log(dados)
-    }, [dados3, dados4, dados5, dados6, dados7, dados8, dados9, dados10]);
+    }, [dados1, dados2,dados3, dados4, 
+        dados5, dados6, dados7, dados8, 
+        dados9, dados10]);
 
     return(
-        <div style={{marginTop: '80px'}}>
+        <div style={{marginTop: '80px', marginBottom: '80px'}}>
+            <h1>1. Qual é o número total de protocolos emitidos por estado? </h1>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Sigla Estado</th>
+                        <th>Número de Solicitantes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dados1.map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.siglauforgao}</td>
+                            <td>{item.numeroprotocolos}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <h1>2. Municípios com maior quantidade de prolocolos emitidos?</h1>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Município</th>
+                        <th>Número de Solicitantes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dados2.map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.nomemunicipioorgao}</td>
+                            <td>{item.numeroprotocolos}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
             <h1>3. Qual é o estado civil predominante entre os solicitantes?</h1>
             <table className="table">
                 <thead>

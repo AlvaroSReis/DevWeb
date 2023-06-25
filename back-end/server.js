@@ -33,7 +33,7 @@ app.get('/query2', (req,res)=> {
     FROM previdencia_social.Dados
     GROUP BY NomeMunicipioOrgao
     order by NumeroProtocolos desc
-    limit 30;`,
+    limit 10;`,
     (err, result)=>{
         if(!err){
             res.send(result);
