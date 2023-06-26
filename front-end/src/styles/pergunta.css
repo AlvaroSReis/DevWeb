@@ -1,0 +1,17 @@
+.pergunta-container {
+    border: #1976d2 3px solid;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding: 5px;
+    padding-bottom: 20px;
+    height: auto;
+}
+
+.pergunta {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

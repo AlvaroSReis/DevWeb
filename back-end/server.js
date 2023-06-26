@@ -8,7 +8,7 @@ const port = 8080;
 connection.on('error', (err) => {
     //Detecção de erro na coneção com o banco de dados.
     //console.error('Error occurred:', err);
-  });
+});
 
 app.use(cors());
 const bodyParser = require('body-parser');
@@ -33,19 +33,32 @@ function executeQuery(query, res) {
     });
   }
 
-
-app.get('/query1', (req, res) => {
-  executeQuery(`SELECT NomeOrgao, 
+app.get('/query1', (req,res)=> {
+    connection.query(`SELECT siglauforgao, 
     COUNT(*) AS NumeroProtocolos 
     FROM previdencia_social.Dados 
-    GROUP BY NomeOrgao;`, res);
+    GROUP BY siglauforgao
+    order by NumeroProtocolos desc;`,
+    (err, result)=>{
+        if(!err){
+            res.send(result);
+        }
+    });
+    connection.end;
 });
 
-app.get('/query2', (req, res) => {
-  executeQuery(`SELECT NomeMunicipioOrgao, 
-    COUNT(*) AS NumeroProtocolos
+app.get('/query2', (req,res)=> {
+    connection.query(`SELECT NomeMunicipioOrgao, COUNT(*) AS NumeroProtocolos
     FROM previdencia_social.Dados
-    GROUP BY NomeMunicipioOrgao;`, res);
+    GROUP BY NomeMunicipioOrgao
+    order by NumeroProtocolos desc
+    limit 10;`,
+    (err, result)=>{
+        if(!err){
+            res.send(result);
+        }
+    });
+    connection.end;
 });
 
 app.get('/query3', (req, res) => {
