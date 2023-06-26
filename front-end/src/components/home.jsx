@@ -8,17 +8,24 @@ import { Pergunta7 } from './perguntas/pergunta7';
 import { Pergunta8 } from './perguntas/pergunta8';
 import { Pergunta9 } from './perguntas/pergunta9';
 import { Pergunta10 } from './perguntas/pergunta10';
+import '../styles/descricao.css'
 
 export default function Home() {
     return(
         <div style={{marginTop: '100px'}}>
-            <div>
+            <div className='descricao'>
                 <p>
-                    Essa página apresenta informações da  
+                    <strong>Descrição:</strong> Essa página apresenta informações da  
                     Carteira de Trabalho e Previdência Social (CTPS) física,
                     que é o documento obrigatório para toda pessoa que venha a prestar 
                     algum tipo de serviço, seja na indústria, no comércio, 
                     na agricultura, na pecuária ou mesmo de natureza doméstica.
+                    <br />
+                    <strong>Fonte dos dados: </strong>
+                    <a target='_blanck' style={{textDecoration: 'none', color: 'inherit'}}
+                    href="https://dados.gov.br/dados/conjuntos-dados/carteira-de-trabalho-e-previdncia-social---ctps">
+                    Carteira de Trabalho e Previdência Social - CTPS
+                    </a>
                 </p>
             </div>
             <Pergunta1/>

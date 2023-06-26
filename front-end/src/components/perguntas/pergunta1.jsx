@@ -29,7 +29,6 @@ export function Pergunta1() {
         setTexto(mostrarResultados? 'Mostrar Resultados' : 'Ocultar Resultados')
     };
 
-
     return(
         <div className="pergunta-container">
             <div className="pergunta">
@@ -40,7 +39,7 @@ export function Pergunta1() {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Sigla Estado</th>
+                        <th>Nome Orgão</th>
                         <th>Número de Solicitantes</th>
                     </tr>
                 </thead>

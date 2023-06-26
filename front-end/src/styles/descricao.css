@@ -1,4 +1,4 @@
-.pergunta-container {
+.descricao {
     border: #1976d2 3px solid;
     margin-left: 4%;
     margin-right: 4%;
@@ -7,12 +7,7 @@
     padding: 5px;
     padding-bottom: 20px;
     height: auto;
+    justify-content: left;
+    text-align: left;
     border-radius: 10px;
-}
-
-.pergunta {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
