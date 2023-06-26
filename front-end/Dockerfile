@@ -9,7 +9,7 @@ COPY package-lock.json .
 
 RUN npm install
 
-COPY . ./usr/src/front-end
+COPY . .
 
 RUN npm run build
 
