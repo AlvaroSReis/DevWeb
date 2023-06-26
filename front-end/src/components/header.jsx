@@ -8,7 +8,7 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
             Dados Carteira de Trabalho e Previdência Social - CTPS 2020 a 2022
           </Typography>
         </Toolbar>
