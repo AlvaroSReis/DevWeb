@@ -14,4 +14,4 @@ COPY . .
 RUN npm run build
 
 #CMD ["sh", "-c", "npm start"]
-CMD ["npm start"]
+CMD ["npm", "start"]
