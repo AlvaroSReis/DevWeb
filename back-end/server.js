@@ -118,9 +118,10 @@ app.get('/query8', (req, res) => {
 app.get('/query9', (req, res) => {
   executeQuery(`SELECT DescricaoNacionalidade, COUNT(*) AS NumeroSolicitantes
     FROM previdencia_social.Dados
-    GROUP BY DescricaoNacionalidade
-    ORDER BY NumeroSolicitantes DESC
-    LIMIT 1;`, res);
+    WHERE DescricaoNacionalidade IS NOT NULL
+    GROUP BY DescricaoNacionalidade 
+    ORDER BY NumeroSolicitantes 
+    DESC LIMIT 5;`, res);
 });
 
 app.get('/query10', (req, res) => {

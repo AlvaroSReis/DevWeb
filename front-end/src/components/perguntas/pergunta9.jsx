@@ -32,7 +32,7 @@ export function Pergunta9() {
     return(
         <div className="pergunta-container">
             <div className="pergunta">
-                <h3>9. Qual é a nacionalidade mais comum entre os solicitantes? </h3>
+                <h3>9. Quais são as cinco nacionalidades mais comum entre os solicitantes? </h3>
                 <button onClick={handleMostarResultados}>{textoBotao}</button>
             </div>
             { mostrarResultados &&
