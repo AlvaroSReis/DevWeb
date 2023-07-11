@@ -32,7 +32,7 @@ export function Pergunta2() {
     return(
         <div className="pergunta-container">
             <div className="pergunta">
-                <h3>2. Municípios com maior quantidade de prolocolos emitidos?</h3>
+                <h3>2. Quais são os trinta municípios com o maior número de protocolos emitidos?</h3>
                 <button onClick={handleMostarResultados}>{textoBotao}</button>
             </div>
             { mostrarResultados &&

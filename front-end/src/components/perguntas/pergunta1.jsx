@@ -32,7 +32,7 @@ export function Pergunta1() {
     return(
         <div className="pergunta-container">
             <div className="pergunta">
-                <h3>1. Qual é o número total de protocolos emitidos por estado? </h3>
+                <h3>1. Quais são os trinta órgãos com o maior número total de protocolos emitidos? </h3>
                 <button onClick={handleMostarResultados}>{textoBotao}</button>
             </div>
             { mostrarResultados &&

@@ -32,7 +32,7 @@ export function Pergunta4() {
     return(
         <div className="pergunta-container">
             <div className="pergunta">
-                <h3>4. Quais são as faixas etárias mais comuns entre os solicitantes?</h3>
+                <h3>4. Qual é a faixa etária mais comum entre os solicitantes?</h3>
                 <button onClick={handleMostarResultados}>{textoBotao}</button>
             </div>
             { mostrarResultados &&

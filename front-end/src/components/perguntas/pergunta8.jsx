@@ -32,7 +32,7 @@ export function Pergunta8() {
     return(
         <div className="pergunta-container">
             <div className="pergunta">
-                <h3>8. Em quais municípios ocorreu o maior número de emissões de carteira de trabalho? </h3>
+                <h3>8. Quais são os trinta municípios que ocorreu o maior número de emissões de carteira de trabalho? </h3>
                 <button onClick={handleMostarResultados}>{textoBotao}</button>
             </div>
             { mostrarResultados &&

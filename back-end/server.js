@@ -36,8 +36,6 @@ function executeQuery(query, res) {
 app.get('/query1', (req,res)=> {
     connection.query(`SELECT NomeOrgao, COUNT(*) AS NumeroProtocolos
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY NomeOrgao
     ORDER BY NumeroProtocolos DESC
     LIMIT 30;`,
@@ -52,8 +50,6 @@ app.get('/query1', (req,res)=> {
 app.get('/query2', (req,res)=> {
     connection.query(`SELECT NomeMunicipioOrgao, COUNT(*) AS NumeroProtocolos
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY NomeMunicipioOrgao
     ORDER BY NumeroProtocolos DESC
     LIMIT 30;`,
@@ -68,8 +64,6 @@ app.get('/query2', (req,res)=> {
 app.get('/query3', (req, res) => {
   executeQuery(`SELECT EstadoCivil, COUNT(*) AS NumeroSolicitantes
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY EstadoCivil
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1;`, res);
@@ -85,8 +79,6 @@ app.get('/query4', (req, res) => {
     ELSE '56+' END AS FaixaEtaria,
     COUNT(*) AS NumeroSolicitantes
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY FaixaEtaria
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1;`, res);
@@ -95,16 +87,12 @@ app.get('/query4', (req, res) => {
 app.get('/query5', (req, res) => {
   executeQuery(`SELECT Sexo, COUNT(*) AS NumeroSolicitantes
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY Sexo;`, res);
 });
 
 app.get('/query6', (req, res) => {
   executeQuery(`SELECT NivelEscolaridade, COUNT(*) AS NumeroSolicitantes
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY NivelEscolaridade
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1;`, res);
@@ -113,8 +101,6 @@ app.get('/query6', (req, res) => {
 app.get('/query7', (req, res) => {
   executeQuery(`SELECT RacaCor, COUNT(*) AS NumeroSolicitantes
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY RacaCor
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1;`, res);
@@ -123,8 +109,7 @@ app.get('/query7', (req, res) => {
 app.get('/query8', (req, res) => {
   executeQuery(`SELECT NomeMunicipioOrgao, COUNT(*) AS NumeroEmissões
     FROM previdencia_social.Dados
-    WHERE TipoProtocolo = '1ª Via' AND DataProtocolo >= 20130829000000000000 AND
-    DataProtocolo <= 20230101000000000000
+    WHERE TipoProtocolo = '1ª Via'
     GROUP BY NomeMunicipioOrgao
     ORDER BY NumeroEmissões DESC
     LIMIT 30;`, res);
@@ -133,8 +118,6 @@ app.get('/query8', (req, res) => {
 app.get('/query9', (req, res) => {
   executeQuery(`SELECT DescricaoNacionalidade, COUNT(*) AS NumeroSolicitantes
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY DescricaoNacionalidade
     ORDER BY NumeroSolicitantes DESC
     LIMIT 1;`, res);
@@ -143,8 +126,6 @@ app.get('/query9', (req, res) => {
 app.get('/query10', (req, res) => {
   executeQuery(`SELECT SiglaUFOrgao, COUNT(*) AS NumeroProtocolos
     FROM previdencia_social.Dados
-    WHERE DataProtocolo >= 20130829000000000000 AND DataProtocolo <=
-    20230101000000000000
     GROUP BY SiglaUFOrgao
     ORDER BY NumeroProtocolos DESC
     LIMIT 30;`, res);
