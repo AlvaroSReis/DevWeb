@@ -39,7 +39,7 @@ export function Pergunta8() {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Faixa Etária</th>
+                        <th>Municípios</th>
                         <th>Número de Solicitantes</th>
                     </tr>
                 </thead>

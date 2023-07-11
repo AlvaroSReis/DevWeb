@@ -46,7 +46,7 @@ export function Pergunta1() {
                 <tbody>
                     {dados.map((item, index) => (
                         <tr key={index}>
-                            <td>{item.siglauforgao}</td>
+                            <td>{item.nomeorgao}</td>
                             <td>{item.numeroprotocolos}</td>
                         </tr>
                     ))}
