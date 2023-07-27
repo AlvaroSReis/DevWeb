@@ -14,9 +14,15 @@ app.use(cors());
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+
+// Verificação se o back esta funcionando via navegador.
+
 app.get('/', (req, res) => {
   res.json("Rodando");
 });
+
+
+// Querys ao banco de dados para obter dados.
 
 function executeQuery(query, res) {
     connection.query(query, (err, result) => {
@@ -131,6 +137,25 @@ app.get('/query10', (req, res) => {
     ORDER BY NumeroProtocolos DESC
     LIMIT 30;`, res);
 });
+
+// Armazenar email do usuario junto com latitude e longitude
+app.post('/novoUsuario', (req, res)=> {
+  const user = req.body;
+  let insertQuery = `INSERT INTO previdencia_social.usuarios(email, latitude, longitude) 
+                     VALUES('${user.email}', '${user.latitude}', '${user.longitude}')`
+
+  client.query(insertQuery, (err, result)=>{
+      if(!err){
+          res.send('Insertion was successful')
+      }
+      else{
+        console.log(err.message)
+      }
+  })
+})
+
+// Obter latitude e longitude de todos os usuários.
+
 
 app.listen(port, () => {
   console.log(`Rodando na porta: ${port}`);
