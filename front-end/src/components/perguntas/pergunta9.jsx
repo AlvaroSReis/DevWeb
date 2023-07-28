@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { query9 } from "../../services/Connection";
 import '../../styles/tabela.css';
 import '../../styles/pergunta.css';
+import Button from '@mui/material/Button'
 
 export function Pergunta9() {
     const [dados, setDados] = useState([{}]);
@@ -33,7 +34,8 @@ export function Pergunta9() {
         <div className="pergunta-container">
             <div className="pergunta">
                 <h3>9. Quais são as cinco nacionalidades mais comum entre os solicitantes? </h3>
-                <button onClick={handleMostarResultados}>{textoBotao}</button>
+                <Button size="small" variant="contained" color="primary"
+                onClick={handleMostarResultados}>{textoBotao}</Button>
             </div>
             { mostrarResultados &&
             <table className="table">

@@ -1,20 +1,40 @@
 import { auth, provider} from '../../services/firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { useState, useEffect } from 'react'
+import { localizacao } from '../../utils/localizacao'
+import Button from '@mui/material/Button'
 
 export default function Login() {
-    const [value, setValue] = useState('')
     const [logado, setLogado] = useState(false)
     const [userName, setUserName] = useState('')
     const [linkImg, setLinkImg] = useState('')
+    const [coordenadas, setCoords] = useState({})
+
+    useEffect( () => {
+        localizacao().then(c => setCoords(c)).catch(e => console.log(e))
+        console.log('------------')
+        console.log(coordenadas.latitude)
+        console.log('------------')
+
+        const logadoLocal = localStorage.getItem('logado') === 'true'
+        setLogado(logadoLocal);
+
+        if (logadoLocal) {
+            //setValue(localStorage.getItem('email'))
+            setUserName(localStorage.getItem('userName'))
+            setLinkImg(localStorage.getItem('linkImg'))
+        }
+    }, [])
     
     const logar = () => {
         signInWithPopup(auth, provider).then((data) => {
-            setValue(data.user.email)
-            localStorage.setItem("email", data.user.email)
             setLogado(true)
             setUserName(data.user.displayName)
             setLinkImg(data.user.photoURL)
+            localStorage.setItem("email", data.user.email)
+            localStorage.setItem('logado', true)
+            localStorage.setItem('userName', data.user.displayName)
+            localStorage.setItem('linkImg', data.user.photoURL)
             console.log(data.user.email)
         })
     }
@@ -25,15 +45,15 @@ export default function Login() {
         setLogado(false)
     }
 
-    useEffect(() => {
-        setValue(localStorage.getItem('email'))
-    })
-
     return(
         <div>
             {!logado &&
                 <div>
-                    <button onClick={logar}>Logar com Google</button>
+                    <Button size="small" variant="contained" color="success" 
+                    onClick={logar}>Logar com Google
+                    <img style={{ height: '18px', borderRadius: '50px', marginLeft: '5px'}}
+                    src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn0.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB&psig=AOvVaw2HFmtVXq-FrRpD9iDDTyAQ&ust=1690669802785000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLiL2Oy5soADFQAAAAAdAAAAABAE" alt="" />
+                    </Button>
                 </div>
             }
             {logado &&
@@ -42,9 +62,10 @@ export default function Login() {
                     style={{ borderRadius: '50%' , width: '40px'}}
                     alt="" />
                     <strong>{userName}</strong>
-                    <button onClick={sair}
+                    <Button size="small" variant="contained" color="error" 
+                    onClick={sair}
                     style={{marginLeft: '20px'}}
-                    >Sair</button>
+                    >Sair</Button>
                 </div>
             }
         </div>

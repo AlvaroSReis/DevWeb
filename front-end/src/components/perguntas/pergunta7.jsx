@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { query7 } from "../../services/Connection";
 import '../../styles/tabela.css';
 import '../../styles/pergunta.css';
+import Button from '@mui/material/Button'
 
 export function Pergunta7() {
     const [dados, setDados] = useState([{}]);
@@ -33,7 +34,8 @@ export function Pergunta7() {
         <div className="pergunta-container">
             <div className="pergunta">
                 <h3>7. Qual é a raça/cor predominante entre os solicitantes?</h3>
-                <button onClick={handleMostarResultados}>{textoBotao}</button>
+                <Button size="small" variant="contained" color="primary"
+                onClick={handleMostarResultados}>{textoBotao}</Button>
             </div>
             { mostrarResultados &&
             <table className="table">
