@@ -155,7 +155,10 @@ app.post('/novoUsuario', (req, res)=> {
 })
 
 // Obter latitude e longitude de todos os usuários.
-
+app.get('/latitudeLongitude', (req, res) => {
+  executeQuery(`SELECT latitude, longitude
+    FROM previdencia_social.usuarios;`, res);
+});
 
 app.listen(port, () => {
   console.log(`Rodando na porta: ${port}`);
