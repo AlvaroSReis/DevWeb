@@ -33,6 +33,7 @@ function executeQuery(query, res) {
         } else {
           res.status(500).send('Error executing query');
         }
+        res.send('Error executing query');
       } else {
         res.send(result);
       }
@@ -40,31 +41,19 @@ function executeQuery(query, res) {
   }
 
 app.get('/query1', (req,res)=> {
-    connection.query(`SELECT NomeOrgao, COUNT(*) AS NumeroProtocolos
+    executeQuery(`SELECT NomeOrgao, COUNT(*) AS NumeroProtocolos
     FROM previdencia_social.Dados
     GROUP BY NomeOrgao
     ORDER BY NumeroProtocolos DESC
-    LIMIT 30;`,
-    (err, result)=>{
-        if(!err){
-            res.send(result);
-        }
-    });
-    connection.end;
+    LIMIT 30;`,res);
 });
 
 app.get('/query2', (req,res)=> {
-    connection.query(`SELECT NomeMunicipioOrgao, COUNT(*) AS NumeroProtocolos
+  executeQuery(`SELECT NomeMunicipioOrgao, COUNT(*) AS NumeroProtocolos
     FROM previdencia_social.Dados
     GROUP BY NomeMunicipioOrgao
     ORDER BY NumeroProtocolos DESC
-    LIMIT 30;`,
-    (err, result)=>{
-        if(!err){
-            res.send(result);
-        }
-    });
-    connection.end;
+    LIMIT 30;`,res);
 });
 
 app.get('/query3', (req, res) => {
@@ -143,15 +132,7 @@ app.post('/novoUsuario', (req, res)=> {
   const user = req.body;
   let insertQuery = `INSERT INTO previdencia_social.usuarios(email, latitude, longitude) 
                      VALUES('${user.email}', '${user.latitude}', '${user.longitude}')`
-
-  client.query(insertQuery, (err, result)=>{
-      if(!err){
-          res.send('Insertion was successful')
-      }
-      else{
-        console.log(err.message)
-      }
-  })
+  executeQuery(insertQuery, res)
 })
 
 // Obter latitude e longitude de todos os usuários.
