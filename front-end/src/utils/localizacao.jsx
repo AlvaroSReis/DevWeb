@@ -4,8 +4,8 @@ export const localizacao = ()=> {
     return new Promise((resolve, reject) => {
         Geolocation.getCurrentPosition(
            position => {
-            const {latitute, longitude} = position.coords
-            resolve({latitute, longitude})
+            const {latitude, longitude} = position.coords
+            resolve({latitude, longitude})
            },
            error => {
             reject(error.message)

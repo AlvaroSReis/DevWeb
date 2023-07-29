@@ -8,23 +8,38 @@ export default function Login() {
     const [logado, setLogado] = useState(false)
     const [userName, setUserName] = useState('')
     const [linkImg, setLinkImg] = useState('')
-    const [coordenadas, setCoords] = useState({})
+    const [email, setEmail] = useState('')
+    const [coordenadas, setCoordenadas] = useState({})
 
     useEffect( () => {
-        localizacao().then(c => setCoords(c)).catch(e => console.log(e))
-        console.log('------------')
-        console.log(coordenadas.latitude)
-        console.log('------------')
-
         const logadoLocal = localStorage.getItem('logado') === 'true'
         setLogado(logadoLocal);
 
         if (logadoLocal) {
-            //setValue(localStorage.getItem('email'))
             setUserName(localStorage.getItem('userName'))
             setLinkImg(localStorage.getItem('linkImg'))
+            setEmail(localStorage.getItem('email'))
         }
-    }, [])
+    }, []);
+
+    useEffect( () => {
+        const fetchData = async () => {
+          try {
+            const coords = await localizacao();
+            setCoordenadas(coords);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+    
+        fetchData();
+    }, []);
+
+    useEffect( () => {
+        console.log('---------------')
+        console.log(coordenadas)
+        console.log('---------------')
+    }, [coordenadas])
     
     const logar = () => {
         signInWithPopup(auth, provider).then((data) => {
@@ -35,7 +50,6 @@ export default function Login() {
             localStorage.setItem('logado', true)
             localStorage.setItem('userName', data.user.displayName)
             localStorage.setItem('linkImg', data.user.photoURL)
-            console.log(data.user.email)
         })
     }
 
