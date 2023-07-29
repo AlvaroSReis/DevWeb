@@ -8,6 +8,7 @@ const api = axios.create({
   */
   const api = axios.create({
     baseURL: 'https://devweb-5sm9.onrender.com/',
+    //baseURL: 'http://localhost:8080/',
     timeout: 50000,
     //headers: {'Keep-Alive': 'true'}
   });

@@ -2,6 +2,7 @@ import { auth, provider} from '../../services/firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import { localizacao } from '../../utils/localizacao'
+import { novoUsuario } from '../../services/Connection'
 import Button from '@mui/material/Button'
 
 export default function Login() {
@@ -35,22 +36,31 @@ export default function Login() {
         fetchData();
     }, []);
 
-    useEffect( () => {
-        console.log('---------------')
-        console.log(coordenadas)
-        console.log('---------------')
-    }, [coordenadas])
+    const salvarUsuarioLocal = (email) => {
+        let user = {}
+        user.email = email
+        user.latitude = coordenadas.latitude
+        user.longitude = coordenadas.longitude
+        console.log(user.email)
+        novoUsuario(user)
+    }
     
     const logar = () => {
         signInWithPopup(auth, provider).then((data) => {
             setLogado(true)
             setUserName(data.user.displayName)
             setLinkImg(data.user.photoURL)
+            setEmail(data.user.email)
+            console.log(email)
             localStorage.setItem("email", data.user.email)
             localStorage.setItem('logado', true)
             localStorage.setItem('userName', data.user.displayName)
             localStorage.setItem('linkImg', data.user.photoURL)
+
+            salvarUsuarioLocal(data.user.email)
         })
+
+
     }
 
     const sair = () => {
