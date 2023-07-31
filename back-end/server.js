@@ -128,12 +128,22 @@ app.get('/query10', (req, res) => {
 });
 
 // Armazenar email do usuario junto com latitude e longitude
-app.post('/novoUsuario', (req, res)=> {
+app.post('/geolocate', (req, res)=> {
   const user = req.body;
-  let insertQuery = `INSERT INTO previdencia_social.usuarios(email, latitude, longitude) 
-                     VALUES('${user.email}', '${user.latitude}', '${user.longitude}')`
-  executeQuery(insertQuery, res)
+  let insertQuery = `SELECT EXISTS(SELECT 1 FROM previdencia_social.usuarios WHERE email='${user.email}');`
+  connection.query(insertQuery, (err, result) => {
+    if(result.rows[0].exists == true){
+      connection.query(`UPDATE previdencia_social.usuarios SET latitude = ${user.latitude}, 
+      longitude = ${user.longitude} WHERE email = ${user.email};`)
+      res.send('Update sucessful')
+    }else{
+      connection.query(`INSERT INTO previdencia_social.usuarios(email, latitude, longitude) 
+      VALUES('${user.email}', '${user.latitude}', '${user.longitude}')`)
+      res.send('Insertion sucessful')
+    }
+  })
 })
+
 
 // Obter latitude e longitude de todos os usuários.
 app.get('/latitudeLongitude', (req, res) => {
