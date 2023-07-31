@@ -85,7 +85,7 @@ export async function query10(){
 }
 
 export async function novoUsuario(user: any) {
-    await Api.post('/novoUsuario', user)
+    await Api.post('/geolocate', user)
 }
 
 // Login do google com popup
