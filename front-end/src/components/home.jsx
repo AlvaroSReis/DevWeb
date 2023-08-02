@@ -8,6 +8,7 @@ import { Pergunta7 } from './perguntas/pergunta7';
 import { Pergunta8 } from './perguntas/pergunta8';
 import { Pergunta9 } from './perguntas/pergunta9';
 import { Pergunta10 } from './perguntas/pergunta10';
+import Link from '@mui/material/Link';
 import '../styles/descricao.css'
 
 export default function Home() {
@@ -22,10 +23,10 @@ export default function Home() {
                     na agricultura, na pecuária ou mesmo de natureza doméstica.
                     <br />
                     <strong>Fonte dos dados: </strong>
-                    <a target='_blanck' style={{textDecoration: 'none', color: 'inherit'}}
+                    <Link underline="hover" color="inherit" target='_blanck'
                     href="https://dados.gov.br/dados/conjuntos-dados/carteira-de-trabalho-e-previdncia-social---ctps">
                     Carteira de Trabalho e Previdência Social - CTPS
-                    </a>
+                    </Link>
                 </p>
             </div>
             <Pergunta1/>
