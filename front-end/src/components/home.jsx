@@ -13,7 +13,7 @@ import '../styles/descricao.css'
 
 export default function Home() {
     return(
-        <div style={{marginTop: '100px'}}>
+        <div style={{marginTop: '120px'}}>
             <div className='descricao'>
                 <p>
                     <strong>Descrição:</strong> Essa página apresenta informações da  

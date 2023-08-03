@@ -4,11 +4,9 @@ import MapaUsuarios from "./mapaUsuarios";
 
 export default function Rotas() {
     return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" exact Component={Home} />
-                <Route path="/mapaUsuarios" Component={MapaUsuarios} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/" exact Component={Home} />
+            <Route path="/mapaUsuarios" Component={MapaUsuarios} />
+        </Routes>
     )
 }

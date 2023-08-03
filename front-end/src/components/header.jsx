@@ -18,17 +18,13 @@ export default function Header() {
         </Toolbar>
         <Breadcrumbs aria-label="breadcrumb" separator="-"
         style={{background: '#77a7eb', color: 'white', padding: '2px'}}>
+
+          <Link style={{marginLeft: '15px', textDecoration: 'none', color: 'inherit'}} 
+          to="/">Analise de Dados CTPS</Link>
+
+          <Link style={{textDecoration: 'none', color: 'inherit'}}
+          to="/mapaUsuarios">Mapa da localização dos usuarios</Link>
           
-          <div>
-            link 1
-          </div>
-
-          <div>
-            link 2
-          </div>
-
-
-
         </Breadcrumbs>
       </AppBar>
   </Box>
