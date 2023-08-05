@@ -88,6 +88,13 @@ export async function novoUsuario(user: any) {
     await Api.post('/geolocate', user)
 }
 
+export async function latitudeLongitude() {
+    let data = JSON.stringify(await Api.get("/latitudeLongitude").then((result) => {
+        return result.data.rows
+    }));
+    return data;
+}
+
 // Login do google com popup
 export async function googlePopup() {
     const provider = new GoogleAuthProvider()
