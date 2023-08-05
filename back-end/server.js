@@ -147,7 +147,7 @@ app.post('/geolocate', (req, res)=> {
 
 // Obter latitude e longitude de todos os usuários.
 app.get('/latitudeLongitude', (req, res) => {
-  executeQuery(`SELECT latitude, longitude
+  executeQuery(`SELECT *
     FROM previdencia_social.usuarios;`, res);
 });
 
