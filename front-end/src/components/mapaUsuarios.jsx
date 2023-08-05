@@ -38,14 +38,14 @@ export default function MapaUsuarios() {
                       }}
                       zoom={8.9}
                     >{
-                      usuarios.map((item, index) => (
+                      usuarios.map((item) => (
                         <Marker position={{
                           lat: item.latitude,
                           lng: item.longitude
                         }}
                         options={{
                           label: {
-                              text: 'Email do usuario',
+                              text: item.email,
                               className: 'map-marker'
                           }
                         }}
