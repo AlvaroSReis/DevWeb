@@ -36,11 +36,12 @@ export default function Login() {
         fetchData();
     }, []);
 
-    const salvarUsuarioLocal = (email) => {
+    const salvarUsuarioLocal = (email, name) => {
         let user = {}
         user.email = email
         user.latitude = coordenadas.latitude
         user.longitude = coordenadas.longitude
+        user.nome = name
         console.log(user.email)
         novoUsuario(user)
     }
@@ -57,7 +58,7 @@ export default function Login() {
             localStorage.setItem('userName', data.user.displayName)
             localStorage.setItem('linkImg', data.user.photoURL)
 
-            salvarUsuarioLocal(data.user.email)
+            salvarUsuarioLocal(data.user.email, data.user.displayName)
         })
 
 

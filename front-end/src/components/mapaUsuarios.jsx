@@ -45,7 +45,7 @@ export default function MapaUsuarios() {
                         }}
                         options={{
                           label: {
-                              text: item.email,
+                              text: item.nome,
                               className: 'map-marker'
                           }
                         }}
