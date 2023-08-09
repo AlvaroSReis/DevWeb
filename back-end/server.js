@@ -134,7 +134,7 @@ app.post('/geolocate', (req, res)=> {
   connection.query(insertQuery, (err, result) => {
     if(result.rows[0].exists == true){
       connection.query(`UPDATE previdencia_social.usuarios SET latitude = ${user.latitude}, 
-      longitude = ${user.longitude}, nome = ${user.nome}, WHERE email = ${user.email};`)
+      longitude = ${user.longitude}, nome = '${user.nome}' WHERE email = '${user.email}';`)
       res.send('Update sucessful')
     }else{
       connection.query(`INSERT INTO previdencia_social.usuarios(email, latitude, longitude, nome) 
