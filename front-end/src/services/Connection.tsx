@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "./firebase"
 import Api from "./Api";
+import geoLocateCityapi from './GeoCityApi'
 
 // Queries ao banco de dados
 
@@ -93,6 +94,15 @@ export async function latitudeLongitude() {
         return result.data.rows
     }));
     return data;
+}
+
+//Localiza a cidade mais próxima do usuario
+
+export async function getCity(lat:number, lon:number) {
+    let data = JSON.stringify(await geoLocateCityapi.get(`?latitude=${lat}&longitude${lon}&localityLanguage=pt-br`).then((result) => {
+        return result.data.city
+    }));
+    return data
 }
 
 // Login do google com popup

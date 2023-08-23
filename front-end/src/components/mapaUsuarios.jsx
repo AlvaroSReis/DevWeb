@@ -5,13 +5,18 @@ import { latitudeLongitude } from '../services/Connection'
 
 export default function MapaUsuarios() {
     const [usuarios, setUsuarios] = useState([])
+    const [cidades, setCidades] = useState([])
+    //console.log(usuarios)
+
+
 
     useEffect(()=> {
       const fetchData = async () => {
         try {
             let data = await latitudeLongitude();
             setUsuarios(JSON.parse(data));
-            console.log(data)
+            //console.log(data)
+            interate(data)
         } catch(error) {
             console.error(error);
         }
@@ -19,6 +24,27 @@ export default function MapaUsuarios() {
     
     fetchData();
     }, [])
+
+    function interate(data) {
+      var dados = JSON.parse(data),
+      result = dados.reduce(function (dados) {
+        console.log("Dados:  \n")
+        return function (r, o) {
+          console.log("O: ")
+          console.log(o)
+          console.log("R: ")
+          console.log(r)
+            if (!dados[o.email]) {
+              dados[o.email] = [];
+              setCidades(cidades, o.cidade);
+            }
+            //hash[o.email].push(o)
+            //setCidades(r);
+            console.log(cidades)
+        };
+    }(Object.create(null)), []);
+    
+    }
     
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',

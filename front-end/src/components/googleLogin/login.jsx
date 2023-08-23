@@ -2,7 +2,7 @@ import { auth, provider} from '../../services/firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { useState, useEffect } from 'react'
 import { localizacao } from '../../utils/localizacao'
-import { novoUsuario } from '../../services/Connection'
+import { novoUsuario, getCity } from '../../services/Connection'
 import Button from '@mui/material/Button'
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
     const [linkImg, setLinkImg] = useState('')
     const [email, setEmail] = useState('')
     const [coordenadas, setCoordenadas] = useState({})
-
+    const [city, setCity] = useState('')
     useEffect( () => {
         const logadoLocal = localStorage.getItem('logado') === 'true'
         setLogado(logadoLocal);
@@ -26,7 +26,16 @@ export default function Login() {
     useEffect( () => {
         const fetchData = async () => {
           try {
-            const coords = await localizacao();
+            const coords = await localizacao().then(async (result) => {
+                //console.log(result)
+                const city = await getCity(result.latitude, result.longitude).then((result) => {
+                    //console.log(result)
+                    return result.slice(1, result.length-1)
+            })
+                setCity(city)
+                return result
+            }
+            );
             setCoordenadas(coords);
           } catch (error) {
             console.log(error);
@@ -42,7 +51,8 @@ export default function Login() {
         user.latitude = coordenadas.latitude
         user.longitude = coordenadas.longitude
         user.nome = name
-        console.log(user.email)
+        user.cidade = city
+        //console.log(user.email)
         novoUsuario(user)
     }
     
