@@ -59,6 +59,7 @@ export default function Login() {
             localStorage.setItem('linkImg', data.user.photoURL)
 
             salvarUsuarioLocal(data.user.email, data.user.displayName)
+            window.location.reload()
         })
 
 
