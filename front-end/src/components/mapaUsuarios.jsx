@@ -11,7 +11,7 @@ export default function MapaUsuarios() {
         try {
             let data = await latitudeLongitude();
             setUsuarios(JSON.parse(data));
-            console.log(data)
+            //console.log(data)
         } catch(error) {
             console.error(error);
         }
@@ -38,7 +38,7 @@ export default function MapaUsuarios() {
                       }}
                       zoom={8.9}
                     >{
-                      usuarios.map((item) => (
+                      usuarios.map((item, index) => (
                         <Marker position={{
                           lat: item.latitude,
                           lng: item.longitude
@@ -49,6 +49,7 @@ export default function MapaUsuarios() {
                               className: 'map-marker'
                           }
                         }}
+                        key={index}
                         ></Marker>
                       ))
                     }

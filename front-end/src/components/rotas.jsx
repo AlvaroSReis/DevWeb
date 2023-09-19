@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import Home from "./home";
 import MapaUsuarios from "./mapaUsuarios";
